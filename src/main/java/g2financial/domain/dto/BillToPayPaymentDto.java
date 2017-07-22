@@ -20,8 +20,10 @@ public class BillToPayPaymentDto {
 	private Date hourDate;
 	private String Observation;
 	private Double amountPaid;
+	private Double amount;
 	private Double interest;
 	private String ourNumber;
+	private Boolean isCancel;
 	
 	public static BillToPayPaymentDto fromObject(BillToPayPayment billToPayPayment) {
 		BillToPayPaymentDto billToPayPaymentDto = new BillToPayPaymentDto();

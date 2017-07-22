@@ -24,16 +24,16 @@ public class BillToPayServiceImpl implements BillToPayService {
 	@Autowired
 	private BillToPayPaymentRepository billToPayPaymentRepository;
 	
-	public List<BillToPay> listByClientId(Integer clientId) throws EventException {
+	public List<BillToPay> listByClientId(Integer clientId, String isBillToPay) throws EventException {
 		
 		if (clientRepository.findOne(clientId) == null) {
 			throw new EventException("Cliente não encontrado", HttpStatus.NOT_FOUND);
 		}
 		
-		List<BillToPay> listBillToPay = repository.findAllByClientId(clientId);
+		List<BillToPay> listBillToPay = repository.findAllByClientIdAndIsCancelFalse(clientId);
 		
 		for (BillToPay billToPay: listBillToPay) {
-			billToPay.setListBillToPayPayment(billToPayPaymentRepository.findAllByBillToPayIdAndIsPay(billToPay.getId(), "NAO"));
+			billToPay.setListBillToPayPayment(billToPayPaymentRepository.findAllByBillToPayIdAndIsPayAndIsCancelFalseOrderByMaturity(billToPay.getId(), isBillToPay));
 		}
 		
 		return listBillToPay;

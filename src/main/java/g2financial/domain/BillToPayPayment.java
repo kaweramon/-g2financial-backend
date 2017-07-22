@@ -41,10 +41,21 @@ public class BillToPayPayment {
 	@Column(name = "Valor_Pago")
 	private Double amountPaid;
 	
+	@Column(name = "Valor")
+	private Double amount;
+	
+	@Column(name = "Valor_Desconto")
+	private Double amountDiscount;
+	
+	@Column(name = "Valor_Acrescimo")
+	private Double amountAccrual;
+	
 	@Column(name = "Juros")
 	private Double interest;
 	
 	@Column(name = "Nosso_numero")
 	private String ourNumber;
 	
+	@Column(name = "Cancelado")
+	private Boolean isCancel;
 }

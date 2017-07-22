@@ -10,6 +10,6 @@ import g2financial.domain.BillToPay;
 @Repository
 public interface BillToPayRepository extends CrudRepository<BillToPay, Integer> {
 
-	public List<BillToPay> findAllByClientId(Integer clientId);
+	public List<BillToPay> findAllByClientIdAndIsCancelFalse(Integer clientId);
 	
 }

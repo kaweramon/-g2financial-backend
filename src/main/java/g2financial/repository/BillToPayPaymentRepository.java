@@ -10,5 +10,5 @@ import g2financial.domain.BillToPayPayment;
 @Repository
 public interface BillToPayPaymentRepository extends CrudRepository<BillToPayPayment, Integer> {
 
-	public List<BillToPayPayment> findAllByBillToPayIdAndIsPay(Integer billToPayId, String isPay);
+	public List<BillToPayPayment> findAllByBillToPayIdAndIsPayAndIsCancelFalseOrderByMaturity(Integer billToPayId, String isPay);
 }

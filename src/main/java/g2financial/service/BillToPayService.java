@@ -7,6 +7,6 @@ import g2financial.generic.EventException;
 
 public interface BillToPayService {
 
-	List<BillToPay> listByClientId(Integer clientId) throws EventException;
+	List<BillToPay> listByClientId(Integer clientId, String isBillToPay) throws EventException;
 	
 }
