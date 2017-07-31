@@ -21,6 +21,7 @@ public class BillToPayPaymentDto {
 	private String Observation;
 	private Double amountPaid;
 	private Double amount;
+	private Double subTotal;
 	private Double interest;
 	private String ourNumber;
 	private Boolean isCancel;
@@ -43,5 +44,13 @@ public class BillToPayPaymentDto {
 		BillToPayPayment billToPayPayment = new BillToPayPayment();
 		BeanUtils.copyProperties(this, billToPayPayment);
 		return billToPayPayment;
+	}
+	
+	public static List<BillToPayPayment> toObject(List<BillToPayPaymentDto> listBillToPayPaymentDto) {
+		List<BillToPayPayment> listBillToPayPayment = new ArrayList<BillToPayPayment>();
+		for (BillToPayPaymentDto billToPayPaymentDto: listBillToPayPaymentDto) {
+			listBillToPayPayment.add(billToPayPaymentDto.toObject());
+		}
+		return listBillToPayPayment;
 	}
 }

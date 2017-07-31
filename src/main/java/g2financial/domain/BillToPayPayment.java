@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import lombok.Data;
 
@@ -43,6 +44,9 @@ public class BillToPayPayment {
 	
 	@Column(name = "Valor")
 	private Double amount;
+	
+	@Transient
+	private Double subTotal;
 	
 	@Column(name = "Valor_Desconto")
 	private Double amountDiscount;
