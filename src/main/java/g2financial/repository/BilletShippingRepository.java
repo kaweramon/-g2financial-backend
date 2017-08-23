@@ -9,4 +9,5 @@ public interface BilletShippingRepository extends CrudRepository<BilletShipping,
 
 	public BilletShipping findFirstByOrderByIdDesc();
 	
+	public BilletShipping findByCounter(Integer counter);
 }

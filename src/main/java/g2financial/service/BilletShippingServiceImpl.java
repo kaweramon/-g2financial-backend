@@ -22,6 +22,10 @@ public class BilletShippingServiceImpl implements BilletShippingService {
 	public BilletShipping getLast() {
 		return repository.findFirstByOrderByIdDesc();
 	}
+
+	public BilletShipping getByCounter(Integer counter) {
+		return repository.findByCounter(counter);
+	}
 	
 	
 }

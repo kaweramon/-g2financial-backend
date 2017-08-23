@@ -62,4 +62,13 @@ public class BillToPayPayment {
 	
 	@Column(name = "Cancelado")
 	private Boolean isCancel;
+	
+	@Column(name = "boletoGerado")
+	private Boolean isTicketGenerated;
+	
+	@Column(name = "banco")
+	private Integer bankId;
+	
+	@Transient
+	private Double billetValue;
 }

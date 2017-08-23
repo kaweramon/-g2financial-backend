@@ -25,6 +25,9 @@ public class BillToPayPaymentDto {
 	private Double interest;
 	private String ourNumber;
 	private Boolean isCancel;
+	private Boolean isTicketGenerated;
+	private Integer bankId;
+	private Double billetValue;
 	
 	public static BillToPayPaymentDto fromObject(BillToPayPayment billToPayPayment) {
 		BillToPayPaymentDto billToPayPaymentDto = new BillToPayPaymentDto();
