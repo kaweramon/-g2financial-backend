@@ -42,10 +42,10 @@ public class BillToPayServiceImpl implements BillToPayService {
 		for (BillToPay billToPay: listBillToPay) {
 //			billToPay.setListBillToPayPayment(billToPayPaymentRepository.findAllByBillToPayIdAndIsPayAndBankIdAndIsTicketGeneratedTrueAndIsCancelFalseOrderByMaturity(billToPay.getId(), isBillToPay, 9));
 			List<BillToPayPayment> listBillToPayPayment = new ArrayList<BillToPayPayment>();
-			for (BillToPayPayment billToPayPayment: billToPayPaymentRepository.findAllByBillToPayIdAndIsPayAndBankIdAndIsTicketGeneratedTrueAndIsCancelFalseOrderByMaturity(billToPay.getId(), bankId)) {
+			//TODO: tirar filtro do banco
+			for (BillToPayPayment billToPayPayment: billToPayPaymentRepository.findAllByBillToPayIdAndIsPayAndBankIdAndIsTicketGeneratedTrueAndIsCancelFalseOrderByMaturity(billToPay.getId(), 7)) {
 				BilletShipping billetShipping = billetShippingRepository.findByCounter(billToPayPayment.getId());
 				if (billetShipping != null) {
-					billToPayPayment.setBilletValue(billetShipping.getBillValue());
 					listBillToPayPayment.add(billToPayPayment);
 				}
 			}
