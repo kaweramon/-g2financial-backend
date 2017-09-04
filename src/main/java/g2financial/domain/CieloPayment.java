@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
+
 import lombok.Data;
 
 @Entity(name = "retorno_pagamento_cielo")
@@ -91,4 +93,10 @@ public class CieloPayment {
 	@Column(name = "tipo")
 	private String type;
 	
+	@Column(name = "eAvulso")
+	@Type(type = "org.hibernate.type.BooleanType")
+	private boolean isForSale;
+	
+	@Column(name = "discriminacao")
+	private String description;
 }

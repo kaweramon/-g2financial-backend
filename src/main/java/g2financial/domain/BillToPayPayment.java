@@ -62,4 +62,7 @@ public class BillToPayPayment {
 	
 	@Column(name = "Cancelado")
 	private Boolean isCancel;
+	
+	@Transient
+	private BilletShipping billetShipping;
 }

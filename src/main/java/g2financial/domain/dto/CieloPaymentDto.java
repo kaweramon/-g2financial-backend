@@ -33,6 +33,8 @@ public class CieloPaymentDto {
 	private String type;
 	private CieloPaymentCardsDto cieloPaymentCards;
 	private Integer clientId;
+	private boolean isForSale;
+	private String description;
 	
 	public static CieloPaymentDto fromObject(CieloPayment cieloPayment) {
 		CieloPaymentDto cieloPaymentDto = new CieloPaymentDto();

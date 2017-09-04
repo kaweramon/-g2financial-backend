@@ -25,10 +25,14 @@ public class BillToPayPaymentDto {
 	private Double interest;
 	private String ourNumber;
 	private Boolean isCancel;
+	private BilletShippingDto billetShipping;
 	
 	public static BillToPayPaymentDto fromObject(BillToPayPayment billToPayPayment) {
 		BillToPayPaymentDto billToPayPaymentDto = new BillToPayPaymentDto();
 		BeanUtils.copyProperties(billToPayPayment, billToPayPaymentDto);
+		if (billToPayPayment.getBilletShipping() != null) {
+			billToPayPaymentDto.setBilletShipping(BilletShippingDto.fromObject(billToPayPayment.getBilletShipping()));
+		}
 		return billToPayPaymentDto;
 	}
 	
@@ -43,6 +47,9 @@ public class BillToPayPaymentDto {
 	public BillToPayPayment toObject() {
 		BillToPayPayment billToPayPayment = new BillToPayPayment();
 		BeanUtils.copyProperties(this, billToPayPayment);
+		if (this.billetShipping != null) {
+			billToPayPayment.setBilletShipping(this.billetShipping.toOject());
+		}
 		return billToPayPayment;
 	}
 	
