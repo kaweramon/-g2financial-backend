@@ -13,7 +13,7 @@ import lombok.Data;
 
 @Entity(name = "contas_a_receber_pagamento")
 @Data
-public class BillToPayPayment {
+public class BillToPayPayment implements Comparable<BillToPayPayment> {
 
 	@Id
 	@Column(name = "Codigo")
@@ -65,4 +65,12 @@ public class BillToPayPayment {
 	
 	@Transient
 	private BilletShipping billetShipping;
+	
+	@Transient
+	private String description;
+	
+	public int compareTo(BillToPayPayment billToPayPayment) {
+		return getMaturity().compareTo(billToPayPayment.getMaturity());
+	}
+
 }

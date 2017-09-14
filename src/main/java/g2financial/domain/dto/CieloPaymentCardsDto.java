@@ -17,8 +17,8 @@ public class CieloPaymentCardsDto {
 	private String cardNumber;
 	private String expirationDate;
 	private String holder;
-	private Boolean saveCard;
-	private Boolean authorizeNow;
+	private boolean saveCard;
+	private boolean authorizeNow;
 	private Date endDate;
 	private Integer interval;
 	private Date nextRecurrency;

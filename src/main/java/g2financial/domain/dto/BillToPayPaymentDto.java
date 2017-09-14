@@ -26,6 +26,7 @@ public class BillToPayPaymentDto {
 	private String ourNumber;
 	private Boolean isCancel;
 	private BilletShippingDto billetShipping;
+	private String description;
 	
 	public static BillToPayPaymentDto fromObject(BillToPayPayment billToPayPayment) {
 		BillToPayPaymentDto billToPayPaymentDto = new BillToPayPaymentDto();

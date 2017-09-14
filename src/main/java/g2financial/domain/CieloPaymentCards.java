@@ -12,6 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
+
 import lombok.Data;
 
 @Entity(name = "retorno_pagamento_cielo_cartoes")
@@ -43,10 +45,12 @@ public class CieloPaymentCards {
 	private String holder;
 	
 	@Column(name = "salvar_cartao")
-	private Boolean saveCard;
+	@Type(type= "org.hibernate.type.NumericBooleanType")
+	private boolean saveCard;
 	
 	@Column(name = "autorizar_agora")
-	private Boolean authorizeNow;
+	@Type(type= "org.hibernate.type.NumericBooleanType")
+	private boolean authorizeNow;
 	
 	@Column(name = "data_final")
 	private Date endDate;

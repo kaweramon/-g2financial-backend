@@ -38,13 +38,15 @@ public class CieloPayment {
 	private Double amount;
 	
 	@Column(name = "autenticado")
-	private Boolean authenticate;
+	@Type(type= "org.hibernate.type.NumericBooleanType")
+	private boolean authenticate;
 	
 	@Column(name = "codigo_autorizacao")
 	private String authorizationCode;
 
 	@Column(name = "capturar")
-	private Boolean capture;
+	@Type(type= "org.hibernate.type.NumericBooleanType")
+	private boolean capture;
 	
 	@Column(name = "pais")
 	private String country;
@@ -72,7 +74,8 @@ public class CieloPayment {
 	private Date receivedDate;
 
 	@Column(name = "recorrente")
-	private Boolean recurrent;
+	@Type(type= "org.hibernate.type.NumericBooleanType")
+	private boolean recurrent;
 	
 	@Column(name = "codigo_retorno")
 	private String returnCode;
@@ -94,9 +97,12 @@ public class CieloPayment {
 	private String type;
 	
 	@Column(name = "eAvulso")
-	@Type(type = "org.hibernate.type.BooleanType")
+	@Type(type= "org.hibernate.type.NumericBooleanType")
 	private boolean isForSale;
 	
 	@Column(name = "discriminacao")
 	private String description;
+	
+	@Column(name = "contadorCodPedido")
+	private Integer countOrderId;
 }

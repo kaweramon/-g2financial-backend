@@ -24,4 +24,8 @@ public class CieloPaymentController {
 		return CieloPaymentDto.fromObject(service.create(cieloPaymentDto.toObject())); 
 	}
 	
+	@RequestMapping(method = RequestMethod.GET, path="/count-order-id")
+	public @ResponseBody Integer getCountOrderId() {
+		return service.getCountOrderId();
+	}
 }

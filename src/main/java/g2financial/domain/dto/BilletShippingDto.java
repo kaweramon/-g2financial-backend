@@ -29,7 +29,7 @@ public class BilletShippingDto {
 		BeanUtils.copyProperties(billetShipping, billetShippingDto);
 		if (billetShipping.getListBillToPayPayment() != null) {
 			billetShippingDto.setListBillToPayPayment(BillToPayPaymentDto.fromObject(billetShipping.getListBillToPayPayment()));
-		}
+		}		
 		return billetShippingDto;
 	}
 	

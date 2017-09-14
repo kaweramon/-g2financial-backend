@@ -19,4 +19,13 @@ public class CieloPaymentServiceImpl implements CieloPaymentService {
 		return repository.save(cieloPayment);
 	}
 
+	public Integer getCountOrderId() {
+		CieloPayment lastCieloPayment = repository.findByFirstDesc();
+		if (lastCieloPayment == null) {
+			return 0;
+		} else {
+			return lastCieloPayment.getCountOrderId();
+		}
+	}
+
 }

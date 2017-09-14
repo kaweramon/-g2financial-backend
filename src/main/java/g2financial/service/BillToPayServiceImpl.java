@@ -1,6 +1,7 @@
 package g2financial.service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class BillToPayServiceImpl implements BillToPayService {
 	@Autowired
 	private BilletShippingRepository billetShippingRepository;
 	
-	public List<BillToPay> listByClientId(Integer clientId, String isBillToPay) throws EventException {
+	public List<BillToPayPayment> listByClientId(Integer clientId, String isBillToPay) throws EventException {
 		
 		if (clientRepository.findOne(clientId) == null) {
 			throw new EventException("Cliente não encontrado", HttpStatus.NOT_FOUND);
@@ -39,19 +40,24 @@ public class BillToPayServiceImpl implements BillToPayService {
 		
 		List<BillToPay> listBillToPay = repository.findAllByClientIdAndIsCancelFalse(clientId);
 		
-		for (BillToPay billToPay: listBillToPay) {
-			List<BillToPayPayment> listBillToPayPayment = new ArrayList<BillToPayPayment>();
+		List<BillToPayPayment> listBillToPayPayment = new ArrayList<BillToPayPayment>();
+		for (BillToPay billToPay: listBillToPay) {			
 			for (BillToPayPayment billToPayPayment: billToPayPaymentRepository.findAllByBillToPayIdAndIsPayAndIsCancelFalseOrderByMaturity(billToPay.getId(), isBillToPay)) {
 				BilletShipping billetShipping = billetShippingRepository.findByCounter(billToPayPayment.getId());
 				if (billetShipping != null) {
 					billToPayPayment.setBilletShipping(billetShipping);
 				}
+				if (billToPayPayment.getDescription() == null && billToPay.getDescription() != null) {
+					billToPayPayment.setDescription(billToPay.getDescription());
+				}
 				listBillToPayPayment.add(billToPayPayment);
 			}
+			
 			billToPay.setListBillToPayPayment(listBillToPayPayment);
 		}
+		Collections.sort(listBillToPayPayment);
 		
-		return listBillToPay;
+		return listBillToPayPayment;
 	}
 
 }

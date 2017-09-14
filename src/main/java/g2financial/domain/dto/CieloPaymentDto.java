@@ -12,9 +12,9 @@ public class CieloPaymentDto {
 
 	private Integer id;	
 	private Double amount;
-	private Boolean authenticate;
+	private boolean authenticate;
 	private String authorizationCode;
-	private Boolean capture;
+	private boolean capture;
 	private String country;
 	private String currency;
 	private Integer installments;
@@ -23,7 +23,7 @@ public class CieloPaymentDto {
 	private String proofOfSale;
 	private String provider;
 	private Date receivedDate;
-	private Boolean recurrent;
+	private boolean recurrent;
 	private String returnCode;
 	private String returnMessage;
 	private Double serviceTaxAmount;
@@ -35,6 +35,7 @@ public class CieloPaymentDto {
 	private Integer clientId;
 	private boolean isForSale;
 	private String description;
+	private Integer countOrderId;
 	
 	public static CieloPaymentDto fromObject(CieloPayment cieloPayment) {
 		CieloPaymentDto cieloPaymentDto = new CieloPaymentDto();
