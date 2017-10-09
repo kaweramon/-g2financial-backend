@@ -14,6 +14,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.hibernate.annotations.Type;
+
 import lombok.Data;
 
 @Data
@@ -56,6 +58,10 @@ public class BilletShipping {
 	
 	@Column(name = "Pagto_Parcial")
 	private String partialPayment;
+	
+	@Column(name = "reg", columnDefinition = "int default 0")
+	@Type(type= "org.hibernate.type.NumericBooleanType")
+	private Boolean isRegister;
 	
 	@OneToMany
 	@JoinTable(name = "boleto_remessa_aux", 

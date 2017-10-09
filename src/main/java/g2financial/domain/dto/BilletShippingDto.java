@@ -22,6 +22,7 @@ public class BilletShippingDto {
 	private Boolean isCancel;
 	private String chargingType;
 	private String partialPayment;
+	private Boolean isRegister;
 	private List<BillToPayPaymentDto> listBillToPayPayment;
 	
 	public static BilletShippingDto fromObject(BilletShipping billetShipping) {

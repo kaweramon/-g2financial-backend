@@ -62,6 +62,9 @@ public class BillToPayPayment implements Comparable<BillToPayPayment> {
 	
 	@Column(name = "Cancelado")
 	private Boolean isCancel;
+
+	@Column(name = "banco")
+	private Integer bankId;
 	
 	@Transient
 	private BilletShipping billetShipping;

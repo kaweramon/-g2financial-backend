@@ -1,4 +1,6 @@
 package g2financial.repository;
+import java.util.List;
+
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -9,6 +11,6 @@ public interface BilletShippingRepository extends CrudRepository<BilletShipping,
 
 	public BilletShipping findFirstByOrderByIdDesc();
 	
-	public BilletShipping findByCounter(Integer counter);
+	public List<BilletShipping> findByCounter(Integer counter);
 	
 }

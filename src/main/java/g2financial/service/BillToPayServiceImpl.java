@@ -42,18 +42,30 @@ public class BillToPayServiceImpl implements BillToPayService {
 		
 		List<BillToPayPayment> listBillToPayPayment = new ArrayList<BillToPayPayment>();
 		for (BillToPay billToPay: listBillToPay) {			
-			for (BillToPayPayment billToPayPayment: billToPayPaymentRepository.findAllByBillToPayIdAndIsPayAndIsCancelFalseOrderByMaturity(billToPay.getId(), isBillToPay)) {
-				BilletShipping billetShipping = billetShippingRepository.findByCounter(billToPayPayment.getId());
-				if (billetShipping != null) {
-					billToPayPayment.setBilletShipping(billetShipping);
+//			for (BillToPayPayment billToPayPayment: billToPayPaymentRepository.findAllByBillToPayIdAndIsPayAndIsCancelFalseOrderByMaturity(billToPay.getId(), isBillToPay)) {
+			if (isBillToPay.equalsIgnoreCase("SIM")) {
+				for (BillToPayPayment billToPayPayment : billToPayPaymentRepository.findAllByBillToPayIdAndIsPayAndIsCancelFalseOrderByMaturity(billToPay.getId(), isBillToPay)) {
+					if (billToPayPayment.getDescription() == null && billToPay.getDescription() != null) {
+						billToPayPayment.setDescription(billToPay.getDescription());
+					}
+					listBillToPayPayment.add(billToPayPayment);
 				}
-				if (billToPayPayment.getDescription() == null && billToPay.getDescription() != null) {
-					billToPayPayment.setDescription(billToPay.getDescription());
+			} else if (isBillToPay.equalsIgnoreCase("NAO")) {
+				for (BillToPayPayment billToPayPayment: billToPayPaymentRepository.findAllByBillToPayIdAndIsPayAndIsCancelFalseAndBankSrAndMaturityDateOrBankCrOrderByMaturity(billToPay.getId(), isBillToPay)) {
+					
+					List<BilletShipping> listBilletShipping = billetShippingRepository.findByCounter(billToPayPayment.getId());
+					if (listBilletShipping != null && listBilletShipping.size() > 0) {
+						billToPayPayment.setBilletShipping(listBilletShipping.get(0));
+					}
+					if (billToPayPayment.getDescription() == null && billToPay.getDescription() != null) {
+						billToPayPayment.setDescription(billToPay.getDescription());
+					}
+					listBillToPayPayment.add(billToPayPayment);
 				}
-				listBillToPayPayment.add(billToPayPayment);
+				
+				billToPay.setListBillToPayPayment(listBillToPayPayment);
 			}
 			
-			billToPay.setListBillToPayPayment(listBillToPayPayment);
 		}
 		Collections.sort(listBillToPayPayment);
 		

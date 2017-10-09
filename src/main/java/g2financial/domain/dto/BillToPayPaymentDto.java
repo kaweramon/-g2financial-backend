@@ -25,6 +25,7 @@ public class BillToPayPaymentDto {
 	private Double interest;
 	private String ourNumber;
 	private Boolean isCancel;
+	private Integer bankId;
 	private BilletShippingDto billetShipping;
 	private String description;
 	

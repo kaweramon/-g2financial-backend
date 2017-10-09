@@ -178,7 +178,7 @@ public class TicketSantanderServiceImpl implements TicketSantanderService {
 		return toReturn;
 	}
 	
-	private String createXmlRequestTitleInclusion(String dtNsu, String station, String nsu, String ticket) {
+	/*private String createXmlRequestTitleInclusion(String dtNsu, String station, String nsu, String ticket) {
 		String toReturn = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\""
 				+ "xmlns:impl=\"http://impl.webservice.ymb.app.bsbr.altec.com/\">" + "\n"
 				+ "<soapenv:Header/>" + "\n"
@@ -196,5 +196,5 @@ public class TicketSantanderServiceImpl implements TicketSantanderService {
 				+ "</soapenv:Envelope>";
 		
 		return toReturn;
-	}
+	}*/
 }
