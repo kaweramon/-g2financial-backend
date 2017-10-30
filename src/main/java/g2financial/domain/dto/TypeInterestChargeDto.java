@@ -1,6 +1,7 @@
 package g2financial.domain.dto;
 
 import org.springframework.beans.BeanUtils;
+
 import g2financial.domain.TypeInterestCharge;
 import lombok.Data;
 
@@ -12,6 +13,8 @@ public class TypeInterestChargeDto {
 	private Double percentInterest;
 	private Double percentLiveDays;
 	private Double percentCharges;
+	private Double interestValue;
+	private Double liveDaysValue;
 	
 	public static TypeInterestChargeDto fromObject(TypeInterestCharge typeInterestCharge) {
 		TypeInterestChargeDto typeInterestChargeDto = new TypeInterestChargeDto();

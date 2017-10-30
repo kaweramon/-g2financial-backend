@@ -25,4 +25,10 @@ public class TypeInterestCharge {
 	
 	@Column(name = "Percentual_encargos")
 	private Double percentCharges;
+	
+	@Column(name = "Valor_multa")
+	private Double interestValue;
+	
+	@Column(name = "Valor_mora_dia")
+	private Double liveDaysValue;
 }
