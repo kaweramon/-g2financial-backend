@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 
+import g2financial.domain.Bank;
 import g2financial.domain.BillToPayPayment;
 import lombok.Data;
 
@@ -28,12 +29,16 @@ public class BillToPayPaymentDto {
 	private Integer bankId;
 	private BilletShippingDto billetShipping;
 	private String description;
+	private Bank bank;
 	
 	public static BillToPayPaymentDto fromObject(BillToPayPayment billToPayPayment) {
 		BillToPayPaymentDto billToPayPaymentDto = new BillToPayPaymentDto();
 		BeanUtils.copyProperties(billToPayPayment, billToPayPaymentDto);
 		if (billToPayPayment.getBilletShipping() != null) {
 			billToPayPaymentDto.setBilletShipping(BilletShippingDto.fromObject(billToPayPayment.getBilletShipping()));
+		}
+		if (billToPayPayment.getBank() != null) {
+			billToPayPaymentDto.setBank(billToPayPayment.getBank());
 		}
 		return billToPayPaymentDto;
 	}

@@ -12,10 +12,12 @@ import g2financial.domain.BillToPay;
 import g2financial.domain.BillToPayPayment;
 import g2financial.domain.BilletShipping;
 import g2financial.generic.EventException;
+import g2financial.repository.BankRepository;
 import g2financial.repository.BillToPayPaymentRepository;
 import g2financial.repository.BillToPayRepository;
 import g2financial.repository.BilletShippingRepository;
 import g2financial.repository.ClientRepository;
+import g2financial.repository.TypeInterestChargeRepository;
 
 @Service
 public class BillToPayServiceImpl implements BillToPayService {
@@ -31,6 +33,12 @@ public class BillToPayServiceImpl implements BillToPayService {
 	
 	@Autowired
 	private BilletShippingRepository billetShippingRepository;
+	
+	@Autowired
+	private BankRepository bankRepository;
+	
+	@Autowired
+	private TypeInterestChargeRepository typeInterestChargeRepository;
 	
 	public List<BillToPayPayment> listByClientId(Integer clientId, String isBillToPay) throws EventException {
 		
@@ -56,10 +64,15 @@ public class BillToPayServiceImpl implements BillToPayService {
 					List<BilletShipping> listBilletShipping = billetShippingRepository.findByCounter(billToPayPayment.getId());
 					if (listBilletShipping != null && listBilletShipping.size() > 0) {
 						billToPayPayment.setBilletShipping(listBilletShipping.get(0));
+						billToPayPayment.getBilletShipping().setTypeInterestCharge(
+								typeInterestChargeRepository.findOneByType(billToPayPayment.getBilletShipping().getChargingType()));
 					}
 					if (billToPayPayment.getDescription() == null && billToPay.getDescription() != null) {
 						billToPayPayment.setDescription(billToPay.getDescription());
 					}
+					if (billToPayPayment.getBankId() != null)
+						billToPayPayment.setBank(bankRepository.findOne(billToPayPayment.getBankId()));
+					
 					listBillToPayPayment.add(billToPayPayment);
 				}
 				

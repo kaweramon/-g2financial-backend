@@ -13,6 +13,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
 import org.hibernate.annotations.Type;
 
@@ -62,6 +63,18 @@ public class BilletShipping {
 	@Column(name = "reg", columnDefinition = "int default 0")
 	@Type(type= "org.hibernate.type.NumericBooleanType")
 	private Boolean isRegister;
+	
+	@Transient
+	private TypeInterestCharge typeInterestCharge;
+	
+	@Column(name = "infJuros")
+	private Double interest;
+	
+	@Column(name = "infMulta")
+	private Double mulct;
+	
+	@Transient()
+	private String codeBar;
 	
 	@OneToMany
 	@JoinTable(name = "boleto_remessa_aux", 

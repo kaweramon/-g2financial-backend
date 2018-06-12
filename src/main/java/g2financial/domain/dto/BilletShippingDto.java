@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.BeanUtils;
 
 import g2financial.domain.BilletShipping;
+import g2financial.domain.TypeInterestCharge;
 import lombok.Data;
 
 @Data
@@ -24,13 +25,17 @@ public class BilletShippingDto {
 	private String partialPayment;
 	private Boolean isRegister;
 	private List<BillToPayPaymentDto> listBillToPayPayment;
+	private TypeInterestCharge typeInterestCharge;
 	
 	public static BilletShippingDto fromObject(BilletShipping billetShipping) {
 		BilletShippingDto billetShippingDto = new BilletShippingDto();
 		BeanUtils.copyProperties(billetShipping, billetShippingDto);
 		if (billetShipping.getListBillToPayPayment() != null) {
 			billetShippingDto.setListBillToPayPayment(BillToPayPaymentDto.fromObject(billetShipping.getListBillToPayPayment()));
-		}		
+		}
+		if (billetShipping.getTypeInterestCharge() != null) {
+			billetShippingDto.setTypeInterestCharge(billetShipping.getTypeInterestCharge());
+		}
 		return billetShippingDto;
 	}
 	

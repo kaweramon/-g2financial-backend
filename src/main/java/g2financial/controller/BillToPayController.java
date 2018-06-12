@@ -21,7 +21,8 @@ public class BillToPayController {
 	private BillToPayService service;
 	
 	@RequestMapping(method = RequestMethod.GET, path = "/{clientId}")
-	public @ResponseBody List<BillToPayPaymentDto> listByClientId(@RequestParam("clientId") Integer clientId, @RequestParam("isBillToPay") String isBillToPay) throws EventException {
+	public @ResponseBody List<BillToPayPaymentDto> listByClientId(@RequestParam("clientId") Integer clientId, 
+			@RequestParam("isBillToPay") String isBillToPay) throws EventException {
 		return BillToPayPaymentDto.fromObject(service.listByClientId(clientId, isBillToPay));
 	}
 	

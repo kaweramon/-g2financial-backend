@@ -17,7 +17,6 @@ public class CustomErrorController implements ErrorController {
 	}
 	
 	public String getErrorPath() {
-		// TODO Auto-generated method stub
 		return "/error";
 	}
     

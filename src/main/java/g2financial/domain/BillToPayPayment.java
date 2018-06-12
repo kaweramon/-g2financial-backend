@@ -67,6 +67,9 @@ public class BillToPayPayment implements Comparable<BillToPayPayment> {
 	private Integer bankId;
 	
 	@Transient
+	private Bank bank;
+	
+	@Transient
 	private BilletShipping billetShipping;
 	
 	@Transient
